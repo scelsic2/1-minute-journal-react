@@ -23,8 +23,8 @@ app.use(
   })
 );
 
-app.use("/api", api_routes);
-app.use("/auth", auth_routes);
+// app.use("/api", api_routes);
+// app.use("/auth", auth_routes);
 
 // Handles any requests that don't match the ones above
 app.get('*', (req,res) =>{
