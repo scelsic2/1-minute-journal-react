@@ -1,8 +1,8 @@
 :root {
     --header-color: #3A1078;
     --backdrop-color: #4E31AA;
-    --accent-close: #2F58CD;
-    --accent-far: #3795BD;
+    --offwhite: #DFD5D0;
+    --accent: #3795BD;
 }
 
 * {
@@ -24,6 +24,8 @@ header {
     display: flex;
     flex-direction: row;
     padding: 20px;
+    width: 100%;
+    justify-content: space-between;
 }
 
 .logo {
@@ -31,7 +33,31 @@ header {
 }
 
 .title {
-    color: var(--accent-far);
+    color: var(--accent);
+}
+
+.left {
+    display: flex;
+    flex-direction: row;
+}
+
+.right {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.right > a{
+    text-decoration: none;
+    color: var(--accent);
+}
+
+.right > a:last-child {
+    padding-left: 15px;
+}
+
+.mobile {
+    display: none;
 }
 
 /* -----Current Date----- */
@@ -39,7 +65,7 @@ header {
     padding: 10px;
     margin-top: 15px;
     text-align: center;
-    color: var(--accent-far);
+    color: var(--accent);
 }
 
 /* -----Prompt----- */
@@ -48,17 +74,7 @@ header {
     padding: 20px 20px 0px 20px;
     font-size: large;
     font-weight: bold;
-}
-
-/* -----Footer----- */
-
-footer {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    padding-bottom: 5px;
+    color: var(--offwhite)
 }
 
 .footer-buttons {
@@ -77,10 +93,43 @@ footer {
 .prompt-button {
     padding: 5px 20px;
     background-color: var(--backdrop-color);
-    color: var(--accent-far);
+    color: var(--accent);
     margin: 5px;
     border-radius: 15px;
     font-size: large;
+}
+
+.new-entry {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+textarea {
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.save {
+    padding: 5px 20px;
+    background-color: var(--header-color);
+    color: var(--accent);
+    border-radius: 15px;
+    font-size: large;
+    width: 30%;
+    margin: auto;
+    font-weight: bold;
+}
+
+/* -----Footer----- */
+
+footer {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding-bottom: 5px;
 }
 
 .footer-links {
@@ -93,4 +142,27 @@ footer {
 .credits {
     font-size: x-small;
     color: black;
+}
+
+@media (max-width: 380px) {
+    .right {
+        display: none;
+    }
+
+    .right.is-open {
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top:2px
+    }
+
+    .mobile {
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .right > a:last-child {
+        padding: 0;
+    }
 }
