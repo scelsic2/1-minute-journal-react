@@ -68,6 +68,76 @@ header {
     color: var(--accent);
 }
 
+/* -----Landing----- */
+.landing {
+    color: var(--offwhite);
+    padding: 20px;
+    margin-top: 200px;
+    text-align: center;
+}
+
+.landing-buttons-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.landing-button {
+    padding: 5px 20px;
+    background-color: var(--header-color);
+    color: var(--accent);
+    border-radius: 15px;
+    font-size: large;
+    width: fit-content;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* -----Login / Register----- */
+
+.login-register-container {
+    background-color: var(--header-color);
+    max-width: fit-content;
+    margin: auto;
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 15px;
+}
+
+.login-register {
+    color: var(--offwhite);
+    text-align: center;
+    padding-top: 10px;
+}
+
+.login-register-form-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 20px 0px 20px;
+    max-width: fit-content;
+    align-items: center;
+    margin: auto;
+}
+
+.login-register-form-element {
+    padding: 10px 20px;
+    margin: 10px;
+}
+
+.submit-btn {
+    padding: 5px 20px;
+    background-color: var(--backdrop-color);
+    color: var(--accent);
+    margin: 15px 0px 5px 0px;
+    border-radius: 15px;
+    font-size: medium;
+    font-weight: bold;
+}
+
+.error-message {
+    color: var(--offwhite);
+}
+
 /* -----Prompt----- */
 .prompt {
     text-align: center;
@@ -153,7 +223,7 @@ footer {
         display:flex;
         flex-direction: column;
         align-items: center;
-        padding-top:2px
+        padding-top:2px;
     }
 
     .mobile {
@@ -164,5 +234,11 @@ footer {
 
     .right > a:last-child {
         padding: 0;
+    }
+
+    .landing-buttons-div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 }

@@ -51,7 +51,7 @@ function Prompt(props) {
           rows="8"
           cols="50"
           className="textarea"
-          placeholder="If you only had 1 minute to journal about your day, what would you record?"
+          // placeholder="If you only had 1 minute to journal about your day, what would you record?"
         ></textarea>
         <button className="save">Save</button>
       </form>
