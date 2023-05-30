@@ -173,11 +173,13 @@ header {
     margin: 20px;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 textarea {
     padding: 10px;
     margin-bottom: 15px;
+    max-width: fit-content;
 }
 
 .save {
@@ -186,9 +188,55 @@ textarea {
     color: var(--accent);
     border-radius: 15px;
     font-size: large;
-    width: 30%;
+    width: fit-content;
     margin: auto;
     font-weight: bold;
+}
+
+/* -----Entries----- */
+.entries-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.entry-div {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    margin-top: 30px;
+}
+
+.entry-date {
+    text-align: right;
+    background-color: var(--header-color);
+    color: var(--accent);
+    padding: 5px 10px 5px 10px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.entry-prompt {
+    background-color: var(--header-color);
+    color: var(--offwhite);
+    padding: 3px 10px 10px 10px;
+    text-align: center;
+}
+
+.entry-text {
+    background-color: var(--offwhite);
+    color: var(--header-color);
+    padding: 5px 10px 5px 10px;
+}
+
+.edit-delete-div {
+    background-color: var(--accent);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px 10px 5px 10px;
 }
 
 /* -----Footer----- */
@@ -240,5 +288,13 @@ footer {
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+
+    textarea {
+        width: 90%;
+    }
+
+    .entry-div {
+        width: 90%;
     }
 }
