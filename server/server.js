@@ -19,7 +19,10 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: process.env.PORT ? true : false },
+    cookie: { 
+      secure: process.env.PORT ? true : false ,
+      maxAge: 1000 * 60 * 60 * 1
+    },
   })
 );
 
