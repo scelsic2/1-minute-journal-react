@@ -32,6 +32,10 @@ header {
     margin-right: 10px;
 }
 
+.logo:hover {
+    cursor: pointer;
+}
+
 .title {
     color: var(--accent);
 }
@@ -50,11 +54,12 @@ header {
 .right > a{
     text-decoration: none;
     color: var(--accent);
-}
-
-.right > a:last-child {
     padding-left: 15px;
 }
+
+/* .right > a:first-child {
+    padding-left: 0px;
+} */
 
 .mobile {
     display: none;
@@ -239,6 +244,10 @@ textarea {
     padding: 5px 10px 5px 10px;
 }
 
+.edit-delete-div *:hover {
+    cursor: pointer;
+}
+
 /* -----Footer----- */
 
 footer {
@@ -271,7 +280,12 @@ footer {
         display:flex;
         flex-direction: column;
         align-items: center;
-        padding-top:2px;
+        padding-top: 3px;
+    }
+
+    .right.right.is-open > a {
+        padding-left: 0px;
+        padding-top: 3px;
     }
 
     .mobile {
@@ -280,9 +294,9 @@ footer {
         justify-content: center;
     }
 
-    .right > a:last-child {
+    /* .right > a:last-child {
         padding: 0;
-    }
+    } */
 
     .landing-buttons-div {
         display: flex;

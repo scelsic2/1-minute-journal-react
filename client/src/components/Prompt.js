@@ -32,6 +32,8 @@ function Prompt(props) {
     user: '',
   });
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     setFormState((prevState) => ({
       ...prevState,
@@ -55,13 +57,14 @@ function Prompt(props) {
     try {
       const res = await axios.post('/api/prompt', {
         ...formState,
-        user: props.user._id, // Use the user ID obtained from props or wherever it is available
+        user: props.user._id, 
       });
       setFormState({
         prompt: '',
         entry: '',
       });
       console.log(formState)
+      navigate('/entries')
     } catch (err) {
       if (err.code === 402) {
         console.log(err);
@@ -69,42 +72,50 @@ function Prompt(props) {
     }
   };
 
-  return (
-    <>
-      {showPrompt && (
-        <div className='prompt-container'>
-          <div className='prompt' name='prompt' value={formState.prompt}>
-            {randomPrompt}
+  if(props && props.user && props.user.email) {
+    // console.log(' this is the true condition ')
+
+      return (
+      <>
+        {showPrompt && (
+          <div className='prompt-container'>
+            <div className='prompt' name='prompt' value={formState.prompt}>
+              {randomPrompt}
+            </div>
           </div>
+        )}
+
+        <div className='footer-buttons'>
+          <button className='new-prompt prompt-button' onClick={handleNewPrompt}>
+            New Prompt
+          </button>
+
+          <button
+            className='clear-prompt prompt-button'
+            onClick={handleClearPrompt}
+          >
+            Clear Prompt
+          </button>
         </div>
-      )}
 
-      <div className='footer-buttons'>
-        <button className='new-prompt prompt-button' onClick={handleNewPrompt}>
-          New Prompt
-        </button>
-
-        <button
-          className='clear-prompt prompt-button'
-          onClick={handleClearPrompt}
-        >
-          Clear Prompt
-        </button>
-      </div>
-
-      <form className='new-entry' onSubmit={createEntry}>
-        <textarea
-          rows='8'
-          cols='50'
-          className='textarea'
-          name='entry'
-          value={formState.entry}
-          onChange={handleFormChange}
-        ></textarea>
-        <button className='save'>Save</button>
-      </form>
-    </>
-  );
+        <form className='new-entry' onSubmit={createEntry}>
+          <textarea
+            rows='8'
+            cols='50'
+            className='textarea'
+            name='entry'
+            value={formState.entry}
+            onChange={handleFormChange}
+          ></textarea>
+          <button className='save'>Save</button>
+        </form>
+      </>
+    );      
+  }
+  else {
+    console.log(' this is the false condition ', JSON.stringify(props))
+    return '';
+  }
 }
 
 export default Prompt;
