@@ -33,7 +33,7 @@ router.post('/register', async (req, res) => {
 router.post("/login", async (req, res) => {
   const user = await User.findOne({
     email: req.body.email,
-  });
+  }); 
   //   If no user is found, send error message
   if (!user) return res.status(402).send({ error: "User not found." });
 
@@ -54,14 +54,14 @@ router.get("/logout", (req, res) => {
   res.send({ message: "You have successfully logged out." });
 });
 
-router.get("/", async (req, res) => {
+router.get("/userauth", async (req, res) => {
   const user_id = req.session.user_id;
 
   if (!user_id) return res.send({ user: null });
 
   const user = await User.findById(user_id).populate({
+    path: "entries",
     populate: "user",
-    populate: "entries",
   });
 
   res.send({ user: user });

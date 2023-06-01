@@ -4,15 +4,29 @@ const Entry = require('../models/Entry')
 const ObjectId = require('mongoose').Types.ObjectId;
 
 function isAuthenticated(req, res, next) {
+  console.log('testing for valid session')
     if (!req.session.user_id)
         return res.status(401).send({ error: "Please login first." })
 
     next();
 }
 
+// Get prompt
+router.get('/prompt', isAuthenticated, async (req, res) => {
+  console.log(' user is ', req.session.user_id);
+
+    const user_id = req.session.user_id
+    console.log({user})
+
+    const user = await User.findById(user_id).populate()
+
+    res.send({ user })
+})
+
 // Create an entry
 router.post('/prompt', isAuthenticated, async (req, res) => {
     const user_id = req.session.user_id;
+
     const { prompt, entry } = req.body;
   
     try {
@@ -36,17 +50,8 @@ router.post('/prompt', isAuthenticated, async (req, res) => {
     }
   });
 
-// Get prompt
-router.get('/prompt', isAuthenticated, async (req, res) => {
-    const user_id = req.session.user_id
-
-    const user = await User.findById(user_id).populate()
-
-    res.send({ user_id })
-})
-
 // Get user's entries
-router.get('/posts', isAuthenticated, async (req, res) => {
+router.get(`/entries/:id`, isAuthenticated, async (req, res) => {
     const user_id = req.session.user_id;
   
     try {
@@ -58,5 +63,21 @@ router.get('/posts', isAuthenticated, async (req, res) => {
       res.status(500).send({ error: err });
     }
   });
+
+// Edit an entry
+router.put('/entries/:id/:id', isAuthenticated, async (req, res) => {
+  const user_id = req.session.user_id
+  try {
+      const entry = await Entry.findByIdAndUpdate(new ObjectId(req.params.id),{
+          ...req.body,
+          user: user_id
+      },{new: true})
+      
+      res.send({entries: entry })
+      console.log({entries: entry })
+  } catch (err) {
+      res.status(500).send({ error: err })
+  }
+})
   
 module.exports = router
